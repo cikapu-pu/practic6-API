@@ -40,10 +40,11 @@ class Client(models.Model):
 class Session(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     master = models.ForeignKey(Master, on_delete=models.CASCADE)
-    sketch = models.ForeignKey(Sketch, on_delete=models.CASCADE, blank=True)
+    sketch = models.ForeignKey(Sketch, on_delete=models.SET_NULL, blank=True, null=True)
     date = models.DateField()
     time = models.TimeField()
-    status = models.CharField(20)
+    status = models.CharField(max_length=20)
 
     def __str__(self):
-        return f"{self.client.name} - {self.sketch.title}"
+        sketch_title = self.sketch.title if self.sketch else "Эскиз не выбран"
+        return f"Сеанс для {self.client.name} ({sketch_title})"
