@@ -5,7 +5,7 @@ from .models import Master, Sketch, Style, Client, Session
 class MasterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Master
-        fields = ['id', 'name', 'expirience_years', 'hourly_rate']
+        fields = ['id', 'name', 'expirience_years', 'hourly_rate', 'phone_number']
 
 
 class StyleSerializer(serializers.ModelSerializer):
